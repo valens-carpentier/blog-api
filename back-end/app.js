@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth.routes');
-
+const authorRoutes = require('./routes/author.routes');
+const commentRoutes = require('./routes/comment.routes');
 const app = express();
 
 // Middleware
@@ -10,6 +11,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api', authRoutes); 
+app.use('/api/author', authorRoutes);
+app.use('/api', commentRoutes);
 
 // Basic error handling
 app.use((err, req, res, next) => {

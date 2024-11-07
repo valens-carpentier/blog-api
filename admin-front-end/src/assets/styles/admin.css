@@ -1,0 +1,61 @@
+body {
+  font-family: 'Verdana', sans-serif;
+  background-color: #f6f6ef;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.hn-container {
+  margin: 20px;
+}
+
+.hn-title {
+  font-size: 2em;
+  color: #ff6600;
+  margin: 0.5em 0;
+}
+
+.hn-welcome {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+.hn-button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  font-size: 1em;
+  margin-right: 0.5em;
+}
+
+.hn-button:hover {
+  background-color: #e55b00;
+}
+
+.hn-post-list {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 0;
+}
+
+.hn-post-item {
+  padding: 0.5em 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.hn-post-title {
+  font-size: 1.5em;
+  color: #000;
+}
+
+.hn-post-content {
+  margin: 0.5em 0;
+}
+
+.hn-post-date {
+  font-size: 0.9em;
+  color: #888;
+}

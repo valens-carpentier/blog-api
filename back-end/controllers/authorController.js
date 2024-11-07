@@ -32,10 +32,10 @@ const createPost = async (req, res) => {
 
 const updatePost = async (req, res) => {
     try {
-        const { title, content } = req.body;
+        const { title, content, published } = req.body;
         const postId = parseInt(req.params.id);
         
-        if (!title && !content) {
+        if (!title && !content && published === undefined) {
             return res.status(400).json({ error: "At least one field to update is required" });
         }
 
@@ -52,7 +52,8 @@ const updatePost = async (req, res) => {
             where: { id: postId },
             data: { 
                 ...(title && { title }),
-                ...(content && { content })
+                ...(content && { content }),
+                ...(published !== undefined && { published })
             }
         });
         res.status(200).json(updatedPost);
@@ -93,9 +94,20 @@ const getPosts = async (req, res) => {
     }
 };
 
+const getPostById = async (req, res) => {
+    try {
+        const postId = parseInt(req.params.id);
+        const post = await prisma.post.findUnique({ where: { id: postId } });
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(400).json({ error: "Failed to fetch post" });
+    }
+};
+
 module.exports = {
     createPost,
     updatePost,
     deletePost,
-    getPosts
+    getPosts,
+    getPostById
 };

@@ -21,7 +21,12 @@ prisma.$connect()
   });
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['https://blog-api-omega-ruddy.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Routes

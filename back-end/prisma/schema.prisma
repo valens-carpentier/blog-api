@@ -8,38 +8,38 @@ datasource db {
 }
 
 model Author {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  password  String   // Encrypted password
-  posts     Post[]
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  email    String @unique
+  password String
+  posts    Post[]
 }
 
 model Visitor {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  createdAt DateTime @default(now())
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
+  email     String    @unique
+  createdAt DateTime  @default(now())
   comments  Comment[]
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
-  title       String
-  content     String
-  createdAt   DateTime  @default(now())
-  published   Boolean   @default(false) // Flag to indicate if the post is published
-  authorId    Int
-  author      Author    @relation(fields: [authorId], references: [id])
-  comments    Comment[]
+  id        Int       @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime  @default(now())
+  published Boolean   @default(false)
+  authorId  Int
+  comments  Comment[]
+  author    Author    @relation(fields: [authorId], references: [id])
 }
 
 model Comment {
-  id          Int      @id @default(autoincrement())
-  content     String
-  createdAt   DateTime @default(now())
-  postId      Int
-  post        Post     @relation(fields: [postId], references: [id])
-  visitorId   Int
-  visitor     Visitor  @relation(fields: [visitorId], references: [id])
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  postId    Int
+  visitorId Int
+  post      Post     @relation(fields: [postId], references: [id])
+  visitor   Visitor  @relation(fields: [visitorId], references: [id])
 }

@@ -10,6 +10,10 @@ function AdminPage() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -80,7 +84,12 @@ function AdminPage() {
 
     return (
         <div className="hn-container">
-            <h1 className="hn-title">Admin Page</h1>
+            <div className="hn-header">
+                <h1 className="hn-title">Admin Page</h1>
+                <button className="hn-button hn-logout-button" onClick={handleLogout}>
+                    Logout
+                </button>
+            </div>
             <p className="hn-welcome">Welcome to the admin dashboard!</p>
             <button className="hn-button" onClick={() => navigate('/create-post')}>Create New Post</button>
             <ul className="hn-post-list">

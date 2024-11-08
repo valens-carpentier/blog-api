@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../assets/styles/login.css';
 
 const API_URL = 'http://localhost:3000/api';
 
@@ -26,19 +27,18 @@ function LoginPage() {
 
       const data = await response.json();
       localStorage.setItem('token', data.token);
-      console.log(data.token);
-      navigate('/admin'); // Redirect to the admin page
+      navigate('/admin');
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="login-container">
+      <h2 className="login-title">Login</h2>
+      {error && <p className="login-error">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="login-form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -47,7 +47,7 @@ function LoginPage() {
             required
           />
         </div>
-        <div>
+        <div className="login-form-group">
           <label>Password:</label>
           <input
             type="password"
@@ -56,7 +56,7 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
     </div>
   );

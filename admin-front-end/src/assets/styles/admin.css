@@ -59,3 +59,18 @@ body {
   font-size: 0.9em;
   color: #888;
 }
+
+.hn-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.hn-logout-button {
+  background-color: #dc3545;
+}
+
+.hn-logout-button:hover {
+  background-color: #c82333;
+}

@@ -1,0 +1,57 @@
+.feed-container {
+    max-width: 85%;
+    margin: 8px auto;
+    padding: 0;
+    background-color: #f6f6ef;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.feed-title {
+    background-color: #ff6600;
+    padding: 2px;
+    color: #000;
+    font-size: 13px;
+    margin: 0;
+}
+
+.posts-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.post-card {
+    display: flex;
+    align-items: baseline;
+    padding: 3px 0;
+    line-height: 1.2;
+}
+
+.post-number {
+    color: #828282;
+    font-size: 10pt;
+    min-width: 25px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.post-card .post-title {
+    font-size: 10pt;
+    color: #000;
+    margin: 0;
+    font-weight: normal;
+    display: inline;
+    background-color: #f6f6ef;
+}
+
+.post-card .post-meta {
+    color: #828282;
+    font-size: 8pt;
+    margin-top: 2px;
+    margin-left: 25px;
+}
+
+.post-author, .post-date {
+    display: inline;
+    margin-right: 4px;
+}

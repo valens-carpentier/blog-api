@@ -139,8 +139,79 @@
         }
     }
     
+    const getPublishedPosts = async (req, res) => {
+        try {
+            const posts = await prisma.post.findMany({
+                where: { 
+                    published: true 
+                },
+                include: {
+                    author: {
+                        select: {
+                            username: true
+                        }
+                    }
+                },
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            });
+            res.status(200).json(posts);
+        } catch (error) {
+            console.error(error);
+            res.status(400).json({ error: "Failed to fetch posts" });
+        }
+    };
+
+    const getPublishedPostById = async (req, res) => {
+        try {
+            const postId = parseInt(req.params.id);
+            const post = await prisma.post.findUnique({ 
+                where: { id: postId },
+                include: {
+                    author: {
+                        select: {
+                            username: true
+                        }
+                    }
+                }
+            });
+            res.status(200).json(post);
+        } catch (error) {
+            console.error(error);
+            res.status(400).json({ error: "Failed to fetch post" });
+        }
+    }
+    
+    const getPostComments = async (req, res) => {
+        try {
+            const postId = parseInt(req.params.postId);
+            const comments = await prisma.comment.findMany({
+                where: { postId },
+                include: {
+                    visitor: {
+                        select: {
+                            username: true,
+                            email: true
+                        }
+                    }
+                },
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            });
+            res.status(200).json(comments);
+        } catch (error) {
+            console.error(error);
+            res.status(400).json({ error: "Failed to fetch comments" });
+        }
+    };
+    
     module.exports = {
         createComment,
         updateComment,
-        deleteComment
+        deleteComment,
+        getPublishedPosts,
+        getPublishedPostById,
+        getPostComments
     }
